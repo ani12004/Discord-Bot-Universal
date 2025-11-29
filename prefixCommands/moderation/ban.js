@@ -1,0 +1,27 @@
+import { PermissionsBitField, EmbedBuilder } from "discord.js";
+
+export default {
+  name: "ban",
+  description: "Bans a user from the server.",
+  permissions: [PermissionsBitField.Flags.BanMembers],
+  botPermissions: [PermissionsBitField.Flags.BanMembers],
+  aliases: ["banish"],
+  async execute(message, args) {
+    const target = message.mentions.members.first() || await message.guild.members.fetch(args[0]).catch(() => null);
+    const reason = args.slice(1).join(" ") || "No reason provided";
+
+    if (!target) return message.reply("❌ Please mention a user or provide a valid ID.");
+    if (!target.bannable) return message.reply("❌ I cannot ban this user. They might have higher roles than me.");
+
+    await target.ban({ reason });
+
+    const embed = new EmbedBuilder()
+      .setColor("Red")
+      .setTitle("🔨 User Banned")
+      .setDescription(`**${target.user.tag}** has been banned.`)
+      .addFields({ name: "Reason", value: reason })
+      .setTimestamp();
+
+    message.channel.send({ embeds: [embed] });
+  },
+};
