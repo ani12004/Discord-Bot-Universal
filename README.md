@@ -156,7 +156,7 @@ The default prefix is `s?`. You can change it using `s?setprefix`.
 
 ### "Missing Permissions" error?
 - Ensure the bot has the `Administrator` permission or the specific permissions required for the command (e.g., `Ban Members` for `s?ban`).
-# Discord Bot 2.0
+# Discord Bot Universal
 
 A complete, multi-purpose Discord bot built with **Discord.js v14**. This bot features a robust command handler, economy system, moderation tools, leveling, tickets, and more.
 
