@@ -169,16 +169,7 @@ export default {
       return;
     }
 
-    if (interaction.isChannelSelectMenu()) {
-      if (interaction.customId === 'welcome_channel_select') {
-        const channelId = interaction.values[0];
-        // Save to DB
-        const { setGuildConfig } = await import('../utils/database.js');
-        setGuildConfig(interaction.guildId, 'welcome_channel', channelId);
-        await interaction.reply({ content: `✅ Welcome channel set to <#${channelId}>!`, ephemeral: true });
-      }
-      return;
-    }
+    // Handle Channel Selects (Consolidated below)
 
     // Handle Buttons (Config & Say)
     if (interaction.isButton()) {
