@@ -79,20 +79,21 @@ export default {
         ctx.textBaseline = 'middle';
 
         // Wrap Text
-        const maxTextWidth = 550;
+        const maxTextWidth = 500; // Reduced to ensure no overlap
         const lines = wrapText(ctx, content, maxTextWidth);
         const lineHeight = 50;
         const startY = 200 - ((lines.length - 1) * lineHeight) / 2;
 
-        // Draw Text
+        // Draw Text (Centered in the right portion)
+        const textX = 675; // Moved slightly right
         lines.forEach((line, i) => {
-            ctx.fillText(line, 650, startY + (i * lineHeight));
+            ctx.fillText(line, textX, startY + (i * lineHeight));
         });
 
         // Draw Name
         ctx.font = 'bold 30px Sans';
         ctx.fillStyle = '#aaaaaa';
-        ctx.fillText(`- ${author.username.toUpperCase()}`, 650, startY + (lines.length * lineHeight) + 30);
+        ctx.fillText(`- ${author.username.toUpperCase()}`, textX, startY + (lines.length * lineHeight) + 30);
 
         // Create Attachment
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'quote.png' });
