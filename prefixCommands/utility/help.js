@@ -10,9 +10,9 @@ export default {
     const prefix = config.prefix || "s?";
 
     const embed = new EmbedBuilder()
-      .setColor("Blue")
-      .setTitle("📚 Help Menu")
-      .setDescription(`Prefix: \`${prefix}\`\nUse \`${prefix}help <command>\` for more info.`)
+      .setColor("#FFB6C1")
+      .setTitle("🌸 Help Menu")
+      .setDescription(`**Prefix:** \`${prefix}\`\nUse \`${prefix}help <command>\` for more info.`)
       .setThumbnail(client.user.displayAvatarURL());
 
     const categories = new Map();
