@@ -1,4 +1,4 @@
-import { PermissionsBitField } from "discord.js";
+import { PermissionsBitField, EmbedBuilder } from "discord.js";
 
 export default {
   name: "purge",
@@ -18,7 +18,12 @@ export default {
       message.reply("❌ Failed to delete messages. They might be older than 14 days.");
     });
 
-    const msg = await message.channel.send(`✅ Deleted **${amount}** messages.`);
+    const embed = new EmbedBuilder()
+      .setColor("#FFB6C1")
+      .setTitle("🧹 Purged")
+      .setDescription(`Deleted **${amount}** messages.`);
+
+    const msg = await message.channel.send({ embeds: [embed] });
     setTimeout(() => msg.delete().catch(() => { }), 3000);
   },
 };

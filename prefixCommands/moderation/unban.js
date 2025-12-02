@@ -26,8 +26,8 @@ export default {
             await message.guild.members.unban(userId);
 
             const embed = new EmbedBuilder()
-                .setColor("Green")
-                .setTitle("User Unbanned")
+                .setColor("#FFB6C1")
+                .setTitle("🌸 User Unbanned")
                 .setDescription(`Successfully unbanned <@${userId}> (${userId}).`)
                 .setFooter({ text: `Unbanned by ${message.author.tag}` })
                 .setTimestamp();

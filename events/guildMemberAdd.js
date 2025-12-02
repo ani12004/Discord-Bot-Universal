@@ -15,13 +15,14 @@ export default {
     if (!channel || !channel.isTextBased()) return;
 
     const embed = new EmbedBuilder()
-      .setColor("Random")
-      .setTitle(`Welcome to ${member.guild.name}!`)
-      .setDescription(`Hello ${member}, welcome to the server! We are glad to have you here.`)
+      .setColor("#FFB6C1") // Pastel Pink
+      .setAuthor({ name: `Welcome to ${member.guild.name}!`, iconURL: member.guild.iconURL({ dynamic: true }) })
+      .setDescription(`${config.welcome_message || `Hello ${member}, welcome to **${member.guild.name}**! We are glad to have you here.`}\n\n**Please make sure to check the following channels:**\n• <id:customize> ・ rules - Read our rules!\n• <id:customize> ・ guides - Check our guides!`)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+      .setFooter({ text: `Member #${member.guild.memberCount}` })
       .setTimestamp();
 
-    channel.send({ content: `Welcome ${member}!`, embeds: [embed] }).catch(() => { });
+    channel.send({ content: `${member}`, embeds: [embed] }).catch(() => { });
 
     // Autorole
     if (config.autorole_id) {

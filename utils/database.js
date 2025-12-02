@@ -20,9 +20,15 @@ db.exec(`
     prefix TEXT DEFAULT 's?',
     log_channel TEXT,
     welcome_channel TEXT,
+    welcome_message TEXT,
+    level_channel TEXT,
     ticket_category TEXT,
     autorole_id TEXT
   );
+
+  // Migrations
+  try { db.prepare('ALTER TABLE guild_configs ADD COLUMN welcome_message TEXT').run(); } catch (e) {}
+  try { db.prepare('ALTER TABLE guild_configs ADD COLUMN level_channel TEXT').run(); } catch (e) {}
 
   CREATE TABLE IF NOT EXISTS users (
     user_id TEXT,
@@ -87,11 +93,11 @@ export const getUser = (userId, guildId) => {
 
 export const updateUser = (userId, guildId, updates) => {
   db.prepare('INSERT OR IGNORE INTO users (user_id, guild_id) VALUES (?, ?)').run(userId, guildId);
-  
+
   const keys = Object.keys(updates);
   const values = Object.values(updates);
   const setClause = keys.map(k => `${k} = ?`).join(', ');
-  
+
   const stmt = db.prepare(`UPDATE users SET ${setClause} WHERE user_id = ? AND guild_id = ?`);
   return stmt.run(...values, userId, guildId);
 };

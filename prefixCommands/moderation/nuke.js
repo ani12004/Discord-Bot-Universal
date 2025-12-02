@@ -1,4 +1,4 @@
-import { PermissionsBitField } from "discord.js";
+import { PermissionsBitField, EmbedBuilder } from "discord.js";
 
 export default {
     name: "nuke",
@@ -21,7 +21,13 @@ export default {
         const newChannel = await channel.clone();
         await channel.delete();
         await newChannel.setPosition(position);
-        await newChannel.send("💥 Channel Nuked!");
-        await newChannel.send("https://media.giphy.com/media/HhTXt43pk1I1W/giphy.gif");
+
+        const embed = new EmbedBuilder()
+            .setColor("#FFB6C1")
+            .setTitle("💥 Channel Nuked")
+            .setImage("https://media.giphy.com/media/HhTXt43pk1I1W/giphy.gif")
+            .setTimestamp();
+
+        await newChannel.send({ embeds: [embed] });
     },
 };

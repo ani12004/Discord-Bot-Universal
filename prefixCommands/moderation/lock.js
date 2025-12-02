@@ -11,7 +11,7 @@ export default {
         });
 
         const embed = new EmbedBuilder()
-            .setColor("Red")
+            .setColor("#FFB6C1")
             .setTitle("🔒 Channel Locked")
             .setDescription("This channel has been locked by a moderator.");
 

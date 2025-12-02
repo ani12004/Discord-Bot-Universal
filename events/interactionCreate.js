@@ -1,4 +1,4 @@
-import { Events, ChannelType, PermissionsBitField, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
+import { Events, ChannelType, PermissionsBitField, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
 import db from '../utils/database.js';
 
 export default {
@@ -96,11 +96,94 @@ export default {
 
     // Handle Select Menus
     if (interaction.isStringSelectMenu()) {
-      // Server Setup logic will go here
-      if (interaction.customId === 'setup_menu') {
-        await interaction.reply({ content: `Selected: ${interaction.values[0]} (Feature coming soon)`, ephemeral: true });
+      if (interaction.customId === 'config_menu') {
+        const value = interaction.values[0];
+
+        if (value === 'welcome_setup') {
+          // Show options to set channel or message
+          const row = new ActionRowBuilder()
+            .addComponents(
+              new ButtonBuilder().setCustomId('set_welcome_channel').setLabel('Set Channel').setStyle(ButtonStyle.Primary),
+              new ButtonBuilder().setCustomId('set_welcome_message').setLabel('Set Message').setStyle(ButtonStyle.Secondary)
+            );
+          await interaction.reply({ content: 'Configure Welcome Settings:', components: [row], ephemeral: true });
+        } else if (value === 'leveling_setup') {
+          await interaction.reply({ content: 'Leveling setup coming soon!', ephemeral: true });
+        } else {
+          await interaction.reply({ content: 'General setup coming soon!', ephemeral: true });
+        }
       }
       return;
+    }
+
+    // Handle Buttons (Config & Say)
+    if (interaction.isButton()) {
+      const { customId } = interaction;
+
+      if (customId === 'set_welcome_message') {
+        const modal = new ModalBuilder()
+          .setCustomId('welcome_message_modal')
+          .setTitle('Edit Welcome Message');
+
+        const messageInput = new TextInputBuilder()
+          .setCustomId('welcome_message_input')
+          .setLabel("Welcome Message")
+          .setStyle(TextInputStyle.Paragraph)
+          .setPlaceholder("Hello {member}, welcome to {server}!")
+          .setRequired(true);
+
+        const firstActionRow = new ActionRowBuilder().addComponents(messageInput);
+        modal.addComponents(firstActionRow);
+        await interaction.showModal(modal);
+        return;
+      }
+
+      if (customId === 'create_embed_button') {
+        const modal = new ModalBuilder()
+          .setCustomId('embed_modal')
+          .setTitle('Create Aesthetic Embed');
+
+        const titleInput = new TextInputBuilder().setCustomId('embed_title').setLabel("Title").setStyle(TextInputStyle.Short).setRequired(false);
+        const descInput = new TextInputBuilder().setCustomId('embed_desc').setLabel("Description").setStyle(TextInputStyle.Paragraph).setRequired(true);
+        const colorInput = new TextInputBuilder().setCustomId('embed_color').setLabel("Color (Hex)").setStyle(TextInputStyle.Short).setPlaceholder("#FFB6C1").setRequired(false);
+        const footerInput = new TextInputBuilder().setCustomId('embed_footer').setLabel("Footer").setStyle(TextInputStyle.Short).setRequired(false);
+
+        modal.addComponents(
+          new ActionRowBuilder().addComponents(titleInput),
+          new ActionRowBuilder().addComponents(descInput),
+          new ActionRowBuilder().addComponents(colorInput),
+          new ActionRowBuilder().addComponents(footerInput)
+        );
+        await interaction.showModal(modal);
+        return;
+      }
+    }
+
+    // Handle Modals
+    if (interaction.isModalSubmit()) {
+      if (interaction.customId === 'welcome_message_modal') {
+        const message = interaction.fields.getTextInputValue('welcome_message_input');
+        // Save to DB
+        const { setGuildConfig } = await import('../utils/database.js');
+        setGuildConfig(interaction.guildId, 'welcome_message', message);
+        await interaction.reply({ content: '✅ Welcome message updated!', ephemeral: true });
+      }
+
+      if (interaction.customId === 'embed_modal') {
+        const title = interaction.fields.getTextInputValue('embed_title');
+        const description = interaction.fields.getTextInputValue('embed_desc');
+        const color = interaction.fields.getTextInputValue('embed_color') || '#FFB6C1';
+        const footer = interaction.fields.getTextInputValue('embed_footer');
+
+        const embed = new EmbedBuilder()
+          .setColor(color)
+          .setDescription(description);
+
+        if (title) embed.setTitle(title);
+        if (footer) embed.setFooter({ text: footer });
+
+        await interaction.reply({ embeds: [embed] });
+      }
     }
   },
 };

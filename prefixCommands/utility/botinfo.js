@@ -13,7 +13,7 @@ export default {
         const seconds = Math.floor(uptime % 60);
 
         const embed = new EmbedBuilder()
-            .setColor("Purple")
+            .setColor("#FFB6C1")
             .setTitle("🤖 Bot Information")
             .setThumbnail(client.user.displayAvatarURL())
             .addFields(

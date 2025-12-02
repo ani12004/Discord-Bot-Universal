@@ -19,7 +19,7 @@ export default {
         const answer = responses[Math.floor(Math.random() * responses.length)];
 
         const embed = new EmbedBuilder()
-            .setColor("Purple")
+            .setColor("#FFB6C1")
             .setTitle("🎱 Magic 8-Ball")
             .addFields(
                 { name: "Question", value: args.join(" ") },

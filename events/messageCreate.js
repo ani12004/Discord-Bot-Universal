@@ -1,5 +1,6 @@
 import { Events, ChannelType, PermissionsBitField, EmbedBuilder } from 'discord.js';
 import { getGuildConfig, updateUser, getUser } from '../utils/database.js';
+import { getTicket, setTicket, findTicketOwner } from '../utils/modmailDB.js';
 
 const cooldowns = new Map();
 const spamMap = new Map();
@@ -8,7 +9,88 @@ export default {
     name: Events.MessageCreate,
     async execute(message, client) {
         if (message.author.bot) return;
-        if (!message.guild) return;
+
+        // --- MODMAIL: DM Handling ---
+        if (!message.guild) {
+            const userId = message.author.id;
+            const existingChannelId = getTicket(userId);
+
+            // 1. Existing Ticket
+            if (existingChannelId) {
+                const channel = client.channels.cache.get(existingChannelId);
+                if (channel) {
+                    const embed = new EmbedBuilder()
+                        .setColor("Blue")
+                        .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL() })
+                        .setDescription(message.content || "*Attachment/No Content*")
+                        .setTimestamp();
+
+                    if (message.attachments.size > 0) {
+                        embed.setImage(message.attachments.first().url);
+                    }
+
+                    return channel.send({ embeds: [embed] }).catch(() => message.reply("❌ Could not send message. Ticket channel might be deleted."));
+                }
+            }
+
+            // 2. New Ticket
+            // Find a guild to open ticket in (Default: First guild the bot is in)
+            const guild = client.guilds.cache.first();
+            if (!guild) return message.reply("❌ I am not in any servers.");
+
+            const config = getGuildConfig(guild.id);
+            const categoryId = config.ticket_category; // Use configured category if available
+
+            const channel = await guild.channels.create({
+                name: `modmail-${message.author.username}`,
+                type: ChannelType.GuildText,
+                parent: categoryId || null,
+                permissionOverwrites: [
+                    { id: guild.id, deny: [PermissionsBitField.Flags.ViewChannel] },
+                    { id: client.user.id, allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages] }
+                    // Add roles here if needed
+                ]
+            });
+
+            setTicket(userId, channel.id);
+
+            const embed = new EmbedBuilder()
+                .setColor("Green")
+                .setTitle("New Modmail Ticket")
+                .setDescription(`**User:** ${message.author}\n**ID:** ${message.author.id}\n\n${message.content}`)
+                .setThumbnail(message.author.displayAvatarURL())
+                .setTimestamp();
+
+            channel.send({ content: "@here", embeds: [embed] });
+            return message.reply("✅ **Ticket Created!** Support team has been notified.");
+        }
+
+        // --- MODMAIL: Reply to User ---
+        const ticketOwner = findTicketOwner(message.channel.id);
+        if (ticketOwner) {
+            // If message starts with prefix, ignore (it's a command)
+            const config = getGuildConfig(message.guild.id);
+            if (message.content.startsWith(config.prefix || 's?')) return;
+
+            const [userId] = ticketOwner;
+            const user = await client.users.fetch(userId).catch(() => null);
+
+            if (user) {
+                const embed = new EmbedBuilder()
+                    .setColor("Green")
+                    .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL() })
+                    .setDescription(message.content || "*Attachment/No Content*")
+                    .setTimestamp();
+
+                if (message.attachments.size > 0) {
+                    embed.setImage(message.attachments.first().url);
+                }
+
+                user.send({ embeds: [embed] }).catch(() => message.react('❌'));
+                message.react('✅');
+                return;
+            }
+        }
 
         const userId = message.author.id;
         const guildId = message.guild.id;

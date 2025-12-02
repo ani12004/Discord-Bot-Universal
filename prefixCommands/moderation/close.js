@@ -3,7 +3,7 @@ import { findTicketOwner, removeTicket } from "../../utils/modmailDB.js";
 export default {
   name: "close",
 
-  async execute(client, message) {
+  async execute(message, args, client) {
     const channel = message.channel;
     const ownerId = findTicketOwner(channel.id);
 
@@ -12,10 +12,10 @@ export default {
 
     await message.reply("🗑️ Closing ticket in 2 seconds...");
 
-    removeTicket(channel.id);
+    removeTicket(ownerId);
 
     setTimeout(() => {
-      channel.delete().catch(() => {});
+      channel.delete().catch(() => { });
     }, 2000);
   }
 };

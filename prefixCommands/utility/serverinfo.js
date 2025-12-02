@@ -10,7 +10,7 @@ export default {
         const owner = await guild.fetchOwner();
 
         const embed = new EmbedBuilder()
-            .setColor("Blue")
+            .setColor("#FFB6C1")
             .setThumbnail(guild.iconURL({ dynamic: true, size: 512 }))
             .setTitle(`${guild.name} Server Info`)
             .addFields(

@@ -11,7 +11,7 @@ export default {
         });
 
         const embed = new EmbedBuilder()
-            .setColor("Green")
+            .setColor("#FFB6C1")
             .setTitle("🔓 Channel Unlocked")
             .setDescription("This channel has been unlocked.");
 

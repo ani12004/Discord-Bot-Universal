@@ -16,8 +16,8 @@ export default {
     await target.kick(reason);
 
     const embed = new EmbedBuilder()
-      .setColor("Orange")
-      .setTitle("🥾 User Kicked")
+      .setColor("#FFB6C1")
+      .setTitle("🌸 User Kicked")
       .setDescription(`**${target.user.tag}** has been kicked.`)
       .addFields({ name: "Reason", value: reason })
       .setTimestamp();

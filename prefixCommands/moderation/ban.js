@@ -16,8 +16,8 @@ export default {
     await target.ban({ reason });
 
     const embed = new EmbedBuilder()
-      .setColor("Red")
-      .setTitle("🔨 User Banned")
+      .setColor("#FFB6C1")
+      .setTitle("🌸 User Banned")
       .setDescription(`**${target.user.tag}** has been banned.`)
       .addFields({ name: "Reason", value: reason })
       .setTimestamp();
