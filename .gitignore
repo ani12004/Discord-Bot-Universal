@@ -1,2 +1,8 @@
 node_modules
 .env
+
+# Database
+*.sqlite-shm
+*.sqlite-wal
+data/bot.sqlite-shm
+data/bot.sqlite-wal
