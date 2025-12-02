@@ -26,10 +26,6 @@ db.exec(`
     autorole_id TEXT
   );
 
-  // Migrations
-  try { db.prepare('ALTER TABLE guild_configs ADD COLUMN welcome_message TEXT').run(); } catch (e) {}
-  try { db.prepare('ALTER TABLE guild_configs ADD COLUMN level_channel TEXT').run(); } catch (e) {}
-
   CREATE TABLE IF NOT EXISTS users (
     user_id TEXT,
     guild_id TEXT,
@@ -70,6 +66,10 @@ db.exec(`
     timestamp INTEGER
   );
 `);
+
+// Migrations
+try { db.prepare('ALTER TABLE guild_configs ADD COLUMN welcome_message TEXT').run(); } catch (e) { }
+try { db.prepare('ALTER TABLE guild_configs ADD COLUMN level_channel TEXT').run(); } catch (e) { }
 
 export default db;
 
