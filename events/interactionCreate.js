@@ -239,6 +239,20 @@ export default {
         await interaction.showModal(modal);
         return;
       }
+
+      if (customId === 'accept_rules_btn') {
+        const { updateEconomy } = await import('../utils/database.js');
+        updateEconomy(interaction.user.id, { rules_accepted: 1 });
+
+        await interaction.reply({ content: '✅ **Rules Accepted!** You can now use economy commands.', ephemeral: true });
+
+        // Disable the button on the original message
+        const disabledRow = new ActionRowBuilder().addComponents(
+          new ButtonBuilder().setCustomId('accept_rules_btn').setLabel('Rules Accepted').setStyle(ButtonStyle.Success).setEmoji('✅').setDisabled(true)
+        );
+        await interaction.message.edit({ components: [disabledRow] });
+        return;
+      }
     }
 
     // Handle Modals

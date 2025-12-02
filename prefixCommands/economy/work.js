@@ -1,10 +1,13 @@
 import { EmbedBuilder } from "discord.js";
 import { getEconomy, updateEconomy } from "../../utils/database.js";
+import { checkRules } from "../../utils/checkRules.js";
 
 export default {
     name: "work",
     description: "Work to earn money.",
     async execute(message, args) {
+        if (!await checkRules(message, message.author.id)) return;
+
         const userId = message.author.id;
         const user = getEconomy(userId);
 

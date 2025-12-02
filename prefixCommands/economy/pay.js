@@ -1,11 +1,14 @@
 import { EmbedBuilder } from "discord.js";
 import { getEconomy, updateEconomy } from "../../utils/database.js";
+import { checkRules } from "../../utils/checkRules.js";
 
 export default {
     name: "pay",
     description: "Pay money to another user.",
     aliases: ["transfer"],
     async execute(message, args) {
+        if (!await checkRules(message, message.author.id)) return;
+
         const target = message.mentions.users.first();
         const amount = parseInt(args[1]);
 

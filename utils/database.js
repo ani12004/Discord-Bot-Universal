@@ -55,7 +55,15 @@ db.exec(`
     bank INTEGER DEFAULT 0,
     last_daily INTEGER DEFAULT 0,
     last_work INTEGER DEFAULT 0,
-    last_rob INTEGER DEFAULT 0
+    last_rob INTEGER DEFAULT 0,
+    rules_accepted INTEGER DEFAULT 0
+  );
+
+  CREATE TABLE IF NOT EXISTS inventory (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT,
+    item_id TEXT,
+    count INTEGER DEFAULT 0
   );
 
   CREATE TABLE IF NOT EXISTS giveaways (
@@ -81,6 +89,7 @@ db.exec(`
 try { db.prepare('ALTER TABLE guild_configs ADD COLUMN welcome_message TEXT').run(); } catch (e) { }
 try { db.prepare('ALTER TABLE guild_configs ADD COLUMN level_channel TEXT').run(); } catch (e) { }
 try { db.prepare('ALTER TABLE tickets ADD COLUMN anonymous INTEGER DEFAULT 0').run(); } catch (e) { }
+try { db.prepare('ALTER TABLE economy ADD COLUMN rules_accepted INTEGER DEFAULT 0').run(); } catch (e) { }
 
 export default db;
 
@@ -115,7 +124,7 @@ export const updateUser = (userId, guildId, updates) => {
 
 export const getEconomy = (userId) => {
   const stmt = db.prepare('SELECT * FROM economy WHERE user_id = ?');
-  return stmt.get(userId) || { user_id: userId, balance: 0, bank: 0, last_daily: 0, last_work: 0, last_rob: 0 };
+  return stmt.get(userId) || { user_id: userId, balance: 0, bank: 0, last_daily: 0, last_work: 0, last_rob: 0, rules_accepted: 0 };
 };
 
 export const updateEconomy = (userId, updates) => {
@@ -127,4 +136,28 @@ export const updateEconomy = (userId, updates) => {
 
   const stmt = db.prepare(`UPDATE economy SET ${setClause} WHERE user_id = ?`);
   return stmt.run(...values, userId);
+};
+
+export const getInventory = (userId) => {
+  return db.prepare('SELECT * FROM inventory WHERE user_id = ?').all(userId);
+};
+
+export const addItem = (userId, itemId, count = 1) => {
+  const existing = db.prepare('SELECT * FROM inventory WHERE user_id = ? AND item_id = ?').get(userId, itemId);
+  if (existing) {
+    db.prepare('UPDATE inventory SET count = count + ? WHERE user_id = ? AND item_id = ?').run(count, userId, itemId);
+  } else {
+    db.prepare('INSERT INTO inventory (user_id, item_id, count) VALUES (?, ?, ?)').run(userId, itemId, count);
+  }
+};
+
+export const removeItem = (userId, itemId, count = 1) => {
+  const existing = db.prepare('SELECT * FROM inventory WHERE user_id = ? AND item_id = ?').get(userId, itemId);
+  if (existing && existing.count >= count) {
+    db.prepare('UPDATE inventory SET count = count - ? WHERE user_id = ? AND item_id = ?').run(count, userId, itemId);
+    // Remove if 0? Optional.
+    db.prepare('DELETE FROM inventory WHERE user_id = ? AND item_id = ? AND count <= 0').run(userId, itemId);
+    return true;
+  }
+  return false;
 };

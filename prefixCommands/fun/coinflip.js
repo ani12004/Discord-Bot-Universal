@@ -1,11 +1,14 @@
 import { EmbedBuilder } from "discord.js";
 import { getEconomy, updateEconomy } from "../../utils/database.js";
+import { checkRules } from "../../utils/checkRules.js";
 
 export default {
     name: "coinflip",
     description: "Flip a coin and bet money.",
     aliases: ["cf", "flip"],
     async execute(message, args) {
+        if (!await checkRules(message, message.author.id)) return;
+
         const amount = parseInt(args[0]);
         const choice = args[1]?.toLowerCase();
 
