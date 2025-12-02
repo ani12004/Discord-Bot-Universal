@@ -113,6 +113,43 @@ export default {
           await interaction.reply({ content: 'General setup coming soon!', ephemeral: true });
         }
       }
+
+      if (interaction.customId === 'setup_menu') {
+        const template = interaction.values[0];
+        await interaction.reply({ content: `🛠️ Setting up **${template}** server...`, ephemeral: true });
+
+        const guild = interaction.guild;
+
+        try {
+          if (template === 'gaming') {
+            await guild.channels.create({ name: '🎮-general', type: ChannelType.GuildText });
+            await guild.channels.create({ name: '🎮-clips', type: ChannelType.GuildText });
+            await guild.channels.create({ name: '🔊-lobby', type: ChannelType.GuildVoice });
+            await guild.channels.create({ name: '🔊-gaming', type: ChannelType.GuildVoice });
+          } else if (template === 'community') {
+            await guild.channels.create({ name: '💬-chat', type: ChannelType.GuildText });
+            await guild.channels.create({ name: '📷-media', type: ChannelType.GuildText });
+            await guild.channels.create({ name: '📢-announcements', type: ChannelType.GuildText });
+            await guild.channels.create({ name: '🔊-voice', type: ChannelType.GuildVoice });
+          } else if (template === 'private') {
+            await guild.channels.create({
+              name: '🔒-secret-chat',
+              type: ChannelType.GuildText,
+              permissionOverwrites: [{ id: guild.id, deny: [PermissionsBitField.Flags.ViewChannel] }]
+            });
+            await guild.channels.create({
+              name: '🔊-secret-voice',
+              type: ChannelType.GuildVoice,
+              permissionOverwrites: [{ id: guild.id, deny: [PermissionsBitField.Flags.ViewChannel] }]
+            });
+          }
+
+          await interaction.followUp({ content: `✅ **${template}** server setup complete!`, ephemeral: true });
+        } catch (error) {
+          console.error(error);
+          await interaction.followUp({ content: '❌ Failed to create channels. Check my permissions!', ephemeral: true });
+        }
+      }
       return;
     }
 
