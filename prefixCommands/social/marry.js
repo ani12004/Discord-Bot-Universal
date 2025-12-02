@@ -17,7 +17,7 @@ export default {
         if (partner.partner_id) return message.reply("That person is already married!");
 
         const embed = new EmbedBuilder()
-            .setColor("Pink")
+            .setColor("#FFC0CB") // Pink
             .setTitle("💍 Marriage Proposal")
             .setDescription(`${target}, **${message.author.username}** has proposed to you! Do you accept?`)
             .setFooter({ text: "You have 30 seconds to respond." });
