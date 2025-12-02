@@ -1,5 +1,5 @@
 import { EmbedBuilder } from "discord.js";
-import { getUser } from "../../utils/database.js";
+import { getEconomy } from "../../utils/database.js";
 
 export default {
     name: "balance",
@@ -7,7 +7,7 @@ export default {
     aliases: ["bal", "money"],
     async execute(message, args) {
         const target = message.mentions.users.first() || message.author;
-        const user = getUser(target.id, message.guild.id);
+        const user = getEconomy(target.id);
 
         const embed = new EmbedBuilder()
             .setColor("Gold")

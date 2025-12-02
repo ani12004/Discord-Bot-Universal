@@ -49,6 +49,15 @@ db.exec(`
     anonymous INTEGER DEFAULT 0
   );
 
+  CREATE TABLE IF NOT EXISTS economy (
+    user_id TEXT PRIMARY KEY,
+    balance INTEGER DEFAULT 0,
+    bank INTEGER DEFAULT 0,
+    last_daily INTEGER DEFAULT 0,
+    last_work INTEGER DEFAULT 0,
+    last_rob INTEGER DEFAULT 0
+  );
+
   CREATE TABLE IF NOT EXISTS giveaways (
     message_id TEXT PRIMARY KEY,
     guild_id TEXT,
@@ -102,4 +111,20 @@ export const updateUser = (userId, guildId, updates) => {
 
   const stmt = db.prepare(`UPDATE users SET ${setClause} WHERE user_id = ? AND guild_id = ?`);
   return stmt.run(...values, userId, guildId);
+};
+
+export const getEconomy = (userId) => {
+  const stmt = db.prepare('SELECT * FROM economy WHERE user_id = ?');
+  return stmt.get(userId) || { user_id: userId, balance: 0, bank: 0, last_daily: 0, last_work: 0, last_rob: 0 };
+};
+
+export const updateEconomy = (userId, updates) => {
+  db.prepare('INSERT OR IGNORE INTO economy (user_id) VALUES (?)').run(userId);
+
+  const keys = Object.keys(updates);
+  const values = Object.values(updates);
+  const setClause = keys.map(k => `${k} = ?`).join(', ');
+
+  const stmt = db.prepare(`UPDATE economy SET ${setClause} WHERE user_id = ?`);
+  return stmt.run(...values, userId);
 };

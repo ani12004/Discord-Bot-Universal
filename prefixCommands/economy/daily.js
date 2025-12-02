@@ -1,13 +1,12 @@
 import { EmbedBuilder } from "discord.js";
-import { getUser, updateUser } from "../../utils/database.js";
+import { getEconomy, updateEconomy } from "../../utils/database.js";
 
 export default {
     name: "daily",
     description: "Claim your daily reward.",
     async execute(message, args) {
         const userId = message.author.id;
-        const guildId = message.guild.id;
-        const user = getUser(userId, guildId);
+        const user = getEconomy(userId);
 
         const cooldown = 24 * 60 * 60 * 1000; // 24 hours
         const now = Date.now();
@@ -20,7 +19,7 @@ export default {
 
         const reward = 1000;
 
-        updateUser(userId, guildId, {
+        updateEconomy(userId, {
             balance: user.balance + reward,
             last_daily: now
         });

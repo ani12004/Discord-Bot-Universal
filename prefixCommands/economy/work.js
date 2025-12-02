@@ -1,13 +1,12 @@
 import { EmbedBuilder } from "discord.js";
-import { getUser, updateUser } from "../../utils/database.js";
+import { getEconomy, updateEconomy } from "../../utils/database.js";
 
 export default {
     name: "work",
     description: "Work to earn money.",
     async execute(message, args) {
         const userId = message.author.id;
-        const guildId = message.guild.id;
-        const user = getUser(userId, guildId);
+        const user = getEconomy(userId);
 
         const cooldown = 60 * 60 * 1000; // 1 hour
         const now = Date.now();
@@ -20,7 +19,7 @@ export default {
 
         const earnings = Math.floor(Math.random() * 500) + 100;
 
-        updateUser(userId, guildId, {
+        updateEconomy(userId, {
             balance: user.balance + earnings,
             last_work: now
         });

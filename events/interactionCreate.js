@@ -276,14 +276,14 @@ export default {
           return interaction.reply({ content: '❌ Invalid amount.', ephemeral: true });
         }
 
-        const { getUser, updateUser } = await import('../utils/database.js');
+        const { getEconomy, updateEconomy } = await import('../utils/database.js');
         const targetUser = await client.users.fetch(targetId).catch(() => null);
 
         if (!targetUser) {
           return interaction.reply({ content: '❌ User not found.', ephemeral: true });
         }
 
-        const userData = getUser(targetId, interaction.guildId);
+        const userData = getEconomy(targetId);
         let newBalance = userData.balance;
 
         if (action === 'add') {
@@ -296,7 +296,7 @@ export default {
           return interaction.reply({ content: '❌ Invalid action. Use `add`, `remove`, or `set`.', ephemeral: true });
         }
 
-        updateUser(targetId, interaction.guildId, { balance: newBalance });
+        updateEconomy(targetId, { balance: newBalance });
 
         const embed = new EmbedBuilder()
           .setColor("Gold")
