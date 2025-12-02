@@ -133,18 +133,6 @@ export const updateUser = (userId, guildId, updates) => {
 };
 
 export const getEconomy = (userId) => {
-  const stmt = db.prepare('SELECT * FROM economy WHERE user_id = ?');
-  return stmt.get(userId) || {
-    user_id: userId,
-    balance: 0,
-    bank: 0,
-    last_daily: 0,
-    db.prepare('INSERT INTO inventory (user_id, item_id, count) VALUES (?, ?, ?)').run(userId, itemId, count);
-  }
-};
-
-export const removeItem = (userId, itemId, count = 1) => {
-  const existing = db.prepare('SELECT * FROM inventory WHERE user_id = ? AND item_id = ?').get(userId, itemId);
   if (existing && existing.count >= count) {
     db.prepare('UPDATE inventory SET count = count - ? WHERE user_id = ? AND item_id = ?').run(count, userId, itemId);
     // Remove if 0? Optional.
