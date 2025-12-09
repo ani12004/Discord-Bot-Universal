@@ -4,110 +4,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Bot Universal | The Future of Discord Bots</title>
-    <meta name="description"
-        content="A proprietary, multi-functional Discord bot featuring advanced moderation, economy, and utility modules.">
+    <title>BleedX - The Ultimate Discord Tool</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    <div class="background-glow"></div>
+    <!-- Background Glow -->
+    <div class="bg-glow"></div>
 
-    <nav class="glass-nav">
-        <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">Universal<span
-                    class="dot">.</span></a></div>
-        <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="/commands">Commands</a></li>
-            <li><a href="#stats">Stats</a></li>
-            <li><a href="https://discord.gg/tN5MvnTTXK" class="nav-btn">Support</a></li>
-        </ul>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <i class="fas fa-robot text-accent"></i>
+                Bleed<span>X</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="/commands" class="nav-link">Commands</a>
+                <a href="/premium" class="nav-link">Premium</a>
+                <a href="/support" class="nav-link">Support</a>
+            </div>
+            <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot"
+                class="btn btn-primary" target="_blank">
+                Add to Discord
+            </a>
+        </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="fade-in-up">The Future of <br><span class="gradient-text">Discord Management</span></h1>
-            <p class="fade-in-up delay-1">Advanced Moderation. Robust Economy. Seamless Experience.</p>
-            <div class="cta-buttons fade-in-up delay-2">
-                <a href="https://discord.com/oauth2/authorize?client_id=1444403106111819826&permissions=8&integration_type=0&scope=bot"
-                    class="btn primary-btn"><i class="fab fa-discord"></i> Add to Discord</a>
-                <a href="#features" class="btn secondary-btn">Learn More</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge animate-float">
+                <i class="fas fa-star"></i> #1 Multi-Purpose Discord Bot
+            </div>
+            <h1 class="hero-title">
+                The Ultimate <br>
+                <span class="text-gradient">Multi-Purpose Tool</span>
+            </h1>
+            <p class="hero-description">
+                Supercharge your server with advanced moderation, universal economy, custom social systems, and powerful
+                utility features.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot"
+                    class="btn btn-primary">
+                    Get Started Now
+                </a>
+                <a href="/commands" class="btn btn-secondary">
+                    Explore Commands
+                </a>
+            </div>
+
+            <!-- Social Proof / Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">10,000+</span>
+                    <span class="stat-label">Servers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">5.2M+</span>
+                    <span class="stat-label">Users</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">99.9%</span>
+                    <span class="stat-label">Uptime</span>
+                </div>
             </div>
         </div>
-        <div class="hero-visual fade-in-up delay-3">
-            <div class="card glass-card float-animation">
-                <div class="card-header">
-                    <span class="circle red"></span>
-                    <span class="circle yellow"></span>
-                    <span class="circle green"></span>
+    </section>
+
+    <!-- Why Choose Us (New Section) -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose <span class="text-gradient">BleedX?</span></h2>
+                <p class="section-subtitle">We provide the best features for your community, utilized by thousands of
+                    servers.</p>
+            </div>
+            <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="feature-card" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 20px auto;"><i class="fas fa-bolt"></i></div>
+                    <h3 class="card-title">Lightning Fast</h3>
+                    <p class="card-desc">Low latency responses ensure your members aren't kept waiting.</p>
                 </div>
-                <div class="card-body">
-                    <div class="code-block">
-                        <span class="cmd">s?ban</span> <span class="arg">@User</span> <span
-                            class="val">Spamming</span><br>
-                        <span class="response">✅ User has been banned.</span>
+                <div class="feature-card" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 20px auto;"><i class="fas fa-lock"></i></div>
+                    <h3 class="card-title">Secure</h3>
+                    <p class="card-desc">Enterprise-grade security to keep your server safe from nukers.</p>
+                </div>
+                <div class="feature-card" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 20px auto;"><i class="fas fa-headset"></i></div>
+                    <h3 class="card-title">24/7 Support</h3>
+                    <p class="card-desc">Our team is always ready to help you with any issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Moderation -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Advanced Moderation & Security</h2>
+                <p class="section-subtitle">Keep your community safe with powerful anti-nuke, anti-raid, and moderation
+                    tools.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="card-title">Anti-Nuke System</h3>
+                    <p class="card-desc">Protect your server from unauthorized changes. Automatically detects and
+                        prevents mass bans, channel deletions, and role changes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="card-title">Advanced Warning</h3>
+                    <p class="card-desc">Comprehensive warning system with automatic punishments, clearwarns, and
+                        detailed logs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-ban"></i></div>
+                    <h3 class="card-title">Anti-Raid Protection</h3>
+                    <p class="card-desc">Stop raids in their tracks with intelligent join gatekeeping, captcha
+                        verification, and mass-join detection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-database"></i></div>
+                    <h3 class="card-title">Secure Database</h3>
+                    <p class="card-desc">Your data is safe with our persistent SQLite database integration, ensuring no
+                        data loss across restarts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Economy & Social -->
+    <section class="section" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Universal Economy & Social</h2>
+                <p class="section-subtitle">Engage your members with a global economy system and fun social
+                    interactions.</p>
+            </div>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <div class="integration-icon"><i class="fas fa-coins"></i></div>
+                    <h3>Global Economy</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Cross-server currency, trading, and banking
+                        system.</p>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-icon"><i class="fas fa-images"></i></div>
+                    <h3>Image Generation</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Dynamic rank cards, welcome images, and
+                        memes.</p>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Social Actions</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Hug, kiss, slap, and more with anime GIFs.
+                    </p>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <h3>Ticket System</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Advanced support tickets with transcripts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leveling & Customization -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Leveling & Customization</h2>
+                <p class="section-subtitle">Reward active members and customize your profile.</p>
+            </div>
+            <div class="feature-grid" style="align-items: center;">
+                <div class="profile-preview">
+                    <div class="profile-header">
+                        <div class="profile-avatar"></div>
+                        <div class="profile-info">
+                            <h3 style="color: white;">User Profile</h3>
+                            <div class="profile-badges">
+                                <div class="badge"></div>
+                                <div class="badge"></div>
+                                <div class="badge"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: #222; height: 10px; border-radius: 5px; margin-bottom: 10px;">
+                        <div style="width: 70%; height: 100%; background: var(--accent-secondary); border-radius: 5px;">
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Level 42 • 15,400 XP</p>
+                </div>
+                <div>
+                    <div class="feature-card" style="margin-bottom: 20px;">
+                        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="card-title">Rank Cards</h3>
+                        <p class="card-desc">Fully customizable rank cards with custom backgrounds and colors.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon"><i class="fas fa-trophy"></i></div>
+                        <h3 class="card-title">Leaderboards</h3>
+                        <p class="card-desc">Global and server-specific leaderboards to foster competition.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <section id="features" class="features">
-        <h2 class="section-title">Premium Features</h2>
-        <div class="feature-grid">
-            <div class="feature-card glass-card" data-tilt>
-                <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
-                <h3>Advanced Moderation</h3>
-                <p>Keep your server safe with powerful tools like Ban, Kick, Timeout, and Nuke.</p>
+    <!-- Testimonials (New Section) -->
+    <section class="section" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Loved by <span class="text-gradient">Communities</span></h2>
+                <p class="section-subtitle">See what our users have to say.</p>
             </div>
-            <div class="feature-card glass-card" data-tilt>
-                <div class="icon-box"><i class="fas fa-coins"></i></div>
-                <h3>Global Economy</h3>
-                <p>Engage users with a robust economy system. Work, trade, and climb the leaderboard.</p>
-            </div>
-            <div class="feature-card glass-card" data-tilt>
-                <div class="icon-box"><i class="fas fa-ticket-alt"></i></div>
-                <h3>Ticket System</h3>
-                <p>Provide professional support with a seamless, button-based ticket system.</p>
-            </div>
-            <div class="feature-card glass-card" data-tilt>
-                <div class="icon-box"><i class="fas fa-chart-line"></i></div>
-                <h3>Leveling & Ranks</h3>
-                <p>Reward activity with XP and custom rank cards. Foster a competitive community.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: white; font-weight: 600;">Alex</h4>
+                            <span style="color: var(--accent-secondary); font-size: 0.8rem;">Server Owner</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">"BleedX completely transformed my server. The moderation tools are a
+                        lifesaver!"</p>
+                </div>
+                <div class="feature-card">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: white; font-weight: 600;">Sarah</h4>
+                            <span style="color: var(--accent-secondary); font-size: 0.8rem;">Community Manager</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">"The economy system is so engaging. My members love collecting the cards."</p>
+                </div>
+                <div class="feature-card">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: white; font-weight: 600;">Mike</h4>
+                            <span style="color: var(--accent-secondary); font-size: 0.8rem;">Moderator</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">"Best anti-nuke bot I've used. It stopped a raid instantly last week."</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="stats" class="stats">
-        <div class="stat-item">
-            <h3 class="counter" data-target="100">0</h3>
-            <p>Servers</p>
-        </div>
-        <div class="stat-item">
-            <h3 class="counter" data-target="50000">0</h3>
-            <p>Users</p>
-        </div>
-        <div class="stat-item">
-            <h3 class="counter" data-target="50">0</h3>
-            <p>Commands</p>
+    <!-- Command Features Grid -->
+    <section class="section" style="background: rgba(255,255,255,0.02);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Everything You Need</h2>
+                <p class="section-subtitle">Over 800+ commands at your fingertips.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-gavel"></i></div>
+                    <h3 class="card-title">Moderation</h3>
+                    <p class="card-desc">Ban, Kick, Timeout, Jail, Softban, Hardban, Unban, Warn, Mute.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                    <h3 class="card-title">Configuration</h3>
+                    <p class="card-desc">Prefix, Automod, Welcome/Goodbye, Reaction Roles, Vanity URL.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-microphone"></i></div>
+                    <h3 class="card-title">Voicemaster</h3>
+                    <p class="card-desc">Setup, Rename, Limit, Lock, Unlock, Ghost, Claim, Permit.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fab fa-twitter"></i></div>
+                    <h3 class="card-title">Socials</h3>
+                    <p class="card-desc">Twitter, YouTube, TikTok, Reddit, Twitch, Instagram notifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-music"></i></div>
+                    <h3 class="card-title">Music</h3>
+                    <p class="card-desc">Play, Queue, Skip, Filters, Spotify & Last.fm integration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3 class="card-title">Fun & Games</h3>
+                    <p class="card-desc">Economy, Leveling, Games, Image Manipulation, Roleplay actions.</p>
+                </div>
+            </div>
+            <div class="flex-center" style="margin-top: 50px;">
+                <a href="/commands" class="btn btn-primary">Explore All Commands</a>
+            </div>
         </div>
     </section>
 
-    <footer class="glass-footer">
-        <p>&copy; 2025 UNIVERSAL. All Rights Reserved. | <a href="/terms.html"
-                style="color: inherit; text-decoration: none;">Terms</a> | <a href="/privacy.html"
-                style="color: inherit; text-decoration: none;">Privacy</a></p>
-        <div class="socials">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <i class="fas fa-robot text-accent"></i>
+                        Bleed<span>X</span>
+                    </a>
+                    <p>The ultimate multi-purpose Discord bot for moderation, economy, and fun.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="/premium">Premium</a></li>
+                        <li><a href="/commands">Commands</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BleedX. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Script -->
     <script src="script.js"></script>
 </body>
 

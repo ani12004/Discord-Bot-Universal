@@ -158,7 +158,7 @@ export default {
 
             // --- COMMAND HANDLING ---
             const config = getGuildConfig(guildId);
-            const prefix = config.prefix || 's?';
+            const prefix = config.prefix || ',';
 
             if (!message.content.startsWith(prefix)) return;
 

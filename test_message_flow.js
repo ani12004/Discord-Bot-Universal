@@ -16,7 +16,7 @@ client.prefixCommands.set('setbio', setbioCommand);
 
 // Mock Message
 const message = {
-    content: 's?profile',
+    content: ',profile',
     author: {
         id: 'test_user_flow',
         bot: false,
@@ -37,15 +37,15 @@ const message = {
 };
 
 async function runTest() {
-    console.log("--- Testing s?profile ---");
+    console.log("--- Testing ,profile ---");
     try {
         await messageCreate.execute(message, client);
     } catch (e) {
         console.error("Profile Test Failed:", e);
     }
 
-    console.log("\n--- Testing s?setbio ---");
-    message.content = 's?setbio I am a test user';
+    console.log("\n--- Testing ,setbio ---");
+    message.content = ',setbio I am a test user';
     try {
         await messageCreate.execute(message, client);
     } catch (e) {

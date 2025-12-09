@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import logger from './utils/logger.js';
 import { loadEvents } from './utils/eventLoader.js';
 import { loadPrefixCommands } from "./handlers/prefixHandler.js";
+import { loadSlashCommands } from "./handlers/slashHandler.js";
 import db from './utils/database.js'; // Init DB
 
 config(); // Load .env FIRST
@@ -38,6 +39,9 @@ async function startBot() {
 
     // Load prefix commands
     await loadPrefixCommands(client);
+
+    // Load slash commands
+    await loadSlashCommands(client);
 
     // Login bot
     await client.login(process.env.DISCORD_TOKEN);

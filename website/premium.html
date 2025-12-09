@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium | BleedX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+            color: var(--text-muted);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            text-align: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .comparison-table th {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            color: white;
+            font-weight: 500;
+        }
+
+        .check {
+            color: var(--accent-secondary);
+        }
+
+        .cross {
+            color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Glow -->
+    <div class="bg-glow"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <i class="fas fa-robot text-accent"></i>
+                Bleed<span>X</span>
+            </a>
+            <div class="nav-links">
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/commands" class="nav-link">Commands</a>
+                <a href="/premium" class="nav-link" style="color: white;">Premium</a>
+                <a href="/support" class="nav-link">Support</a>
+            </div>
+            <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot"
+                class="btn btn-primary" target="_blank">
+                Add to Discord
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section" style="padding-top: 150px; min-height: 80vh;">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Premium <span class="text-gradient">Plans</span></h1>
+                <p class="section-subtitle">Unlock exclusive features and supercharge your server.</p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <!-- Free Plan -->
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-star" style="color: var(--text-muted);"></i></div>
+                    <h3 class="card-title">Free</h3>
+                    <p class="card-desc">Forever Free</p>
+                    <h2 style="color: white; font-size: 2.5rem; margin: 20px 0;">$0<span
+                            style="font-size: 1rem; color: var(--text-muted);">/mo</span></h2>
+                    <ul style="list-style: none; margin-top: 20px; color: var(--text-muted); text-align: left;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Basic Moderation</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Economy System</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Standard Music</li>
+                    </ul>
+                    <a href="https://discord.com/invite/bot" class="btn btn-secondary"
+                        style="margin-top: 20px; width: 100%;">Invite Bot</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="feature-card"
+                    style="border-color: var(--accent-primary); box-shadow: 0 0 30px rgba(41, 121, 255, 0.1); transform: scale(1.05);">
+                    <div
+                        style="position: absolute; top: 0; right: 0; background: var(--accent-primary); color: white; padding: 5px 15px; font-size: 0.8rem; font-weight: bold; border-bottom-left-radius: 10px;">
+                        POPULAR</div>
+                    <div class="card-icon"><i class="fas fa-crown"></i></div>
+                    <h3 class="card-title">Premium</h3>
+                    <p class="card-desc">Monthly Subscription</p>
+                    <h2 style="color: white; font-size: 2.5rem; margin: 20px 0;">$4.99<span
+                            style="font-size: 1rem; color: var(--text-muted);">/mo</span></h2>
+                    <ul style="list-style: none; margin-top: 20px; color: var(--text-muted); text-align: left;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> All Free Features</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> High Quality Music</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Custom Embeds</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Priority Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Subscribe</a>
+                </div>
+
+                <!-- Lifetime Plan -->
+                <div class="feature-card">
+                    <div class="card-icon"><i class="fas fa-infinity"></i></div>
+                    <h3 class="card-title">Lifetime</h3>
+                    <p class="card-desc">One-time Payment</p>
+                    <h2 style="color: white; font-size: 2.5rem; margin: 20px 0;">$49.99<span
+                            style="font-size: 1rem; color: var(--text-muted);">/life</span></h2>
+                    <ul style="list-style: none; margin-top: 20px; color: var(--text-muted); text-align: left;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> All Premium Features</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Early Access</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check text-accent"
+                                style="margin-right: 10px;"></i> Special Badge</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 20px; width: 100%;">Buy Now</a>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div
+                style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px; margin-top: 80px;">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">Feature Comparison</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Free</th>
+                            <th>Premium</th>
+                            <th>Lifetime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Moderation Tools</td>
+                            <td><i class="fas fa-check check"></i></td>
+                            <td><i class="fas fa-check check"></i></td>
+                            <td><i class="fas fa-check check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Music Quality</td>
+                            <td>Standard (64kbps)</td>
+                            <td>High (320kbps)</td>
+                            <td>High (320kbps)</td>
+                        </tr>
+                        <tr>
+                            <td>Playlist Limit</td>
+                            <td>50 Songs</td>
+                            <td>500 Songs</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Rank Cards</td>
+                            <td><i class="fas fa-times cross"></i></td>
+                            <td><i class="fas fa-check check"></i></td>
+                            <td><i class="fas fa-check check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Reaction Roles</td>
+                            <td>5</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Support Priority</td>
+                            <td>Standard</td>
+                            <td>Priority</td>
+                            <td>V.I.P</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- FAQ Section -->
+            <div style="margin-top: 80px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Frequently Asked Questions
+                </h2>
+
+                <div class="feature-card" style="margin-bottom: 20px;">
+                    <h3 style="color: white; font-size: 1.2rem; margin-bottom: 10px;">Do I need to pay monthly?</h3>
+                    <p style="color: var(--text-muted);">Not necessarily! We offer both monthly subscriptions for
+                        flexibility and a lifetime plan if you want to pay once and own it forever.</p>
+                </div>
+
+                <div class="feature-card" style="margin-bottom: 20px;">
+                    <h3 style="color: white; font-size: 1.2rem; margin-bottom: 10px;">Can I transfer my premium to
+                        another server?</h3>
+                    <p style="color: var(--text-muted);">Yes, you can transfer your premium subscription to any server
+                        you own. Use the <code>,premium transfer</code> command.</p>
+                </div>
+
+                <div class="feature-card" style="margin-bottom: 20px;">
+                    <h3 style="color: white; font-size: 1.2rem; margin-bottom: 10px;">What payment methods do you
+                        accept?</h3>
+                    <p style="color: var(--text-muted);">We accept all major credit cards, PayPal, and Google Pay
+                        through our secure payment processor.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <i class="fas fa-robot text-accent"></i>
+                        Bleed<span>X</span>
+                    </a>
+                    <p>The ultimate multi-purpose Discord bot for moderation, economy, and fun.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/premium">Premium</a></li>
+                        <li><a href="/commands">Commands</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="/terms.html">Terms of Service</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BleedX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

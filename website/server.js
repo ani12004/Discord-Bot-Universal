@@ -10,6 +10,14 @@ app.get('/commands', (req, res) => {
     res.sendFile(path.join(__dirname, 'commands.html'));
 });
 
+app.get('/premium', (req, res) => {
+    res.sendFile(path.join(__dirname, 'premium.html'));
+});
+
+app.get('/support', (req, res) => {
+    res.sendFile(path.join(__dirname, 'support.html'));
+});
+
 // Fallback to index.html for any other requests
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));

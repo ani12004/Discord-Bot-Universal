@@ -4,44 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service | Discord Bot Universal</title>
+    <title>Terms of Service | BleedX</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    <div class="background-glow"></div>
-    <nav class="glass-nav">
-        <div class="logo"><a href="/" style="text-decoration:none; color:inherit;">Universal<span
-                    class="dot">.</span></a></div>
+    <!-- Background Glow -->
+    <div class="bg-glow"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-robot text-accent"></i>
+                Bleed<span>X</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="commands.html" class="nav-link">Commands</a>
+                <a href="index.html#premium" class="nav-link">Premium</a>
+                <a href="index.html#support" class="nav-link">Support</a>
+            </div>
+            <a href="https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot"
+                class="btn btn-primary" target="_blank">
+                Add to Discord
+            </a>
+        </div>
     </nav>
 
-    <main class="commands-container" style="max-width: 800px; margin: 0 auto; padding-top: 100px;">
-        <h1 class="fade-in-up">Terms of <span class="gradient-text">Service</span></h1>
+    <!-- Main Content -->
+    <section class="section" style="padding-top: 150px; min-height: 80vh;">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Terms of <span class="text-gradient">Service</span></h1>
+            </div>
 
-        <div class="glass-card fade-in-up delay-1" style="margin-top: 2rem; padding: 2rem; line-height: 1.6;">
-            <h3>1. Acceptance of Terms</h3>
-            <p>By inviting and using Discord Bot Universal ("the Bot"), you agree to these Terms of Service.</p>
-            <br>
-            <h3>2. Usage License</h3>
-            <p>You are granted a limited, non-exclusive license to use the Bot for your Discord server. You may not
-                reverse engineer, modify, or redistribute the Bot's source code without permission.</p>
-            <br>
-            <h3>3. User Conduct</h3>
-            <p>You agree not to use the Bot for:</p>
-            <ul>
-                <li>Spamming or harassment.</li>
-                <li>Distributing illegal content.</li>
-                <li>Exploiting bugs or glitches (please report them!).</li>
-            </ul>
-            <br>
-            <h3>4. Availability</h3>
-            <p>We strive for 99.9% uptime but do not guarantee uninterrupted service. The Bot is provided "as is".</p>
-            <br>
-            <h3>5. Termination</h3>
-            <p>We reserve the right to ban any user or server from using the Bot for violating these terms.</p>
+            <div
+                style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px; backdrop-filter: blur(10px); max-width: 900px; margin: 0 auto;">
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: white; margin-bottom: 10px; font-size: 1.5rem;">1. Acceptance of Terms</h3>
+                    <p style="color: var(--text-muted);">By inviting and using BleedX ("the Bot"), you
+                        agree to these Terms of Service.</p>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: white; margin-bottom: 10px; font-size: 1.5rem;">2. Usage License</h3>
+                    <p style="color: var(--text-muted);">You are granted a limited, non-exclusive license to use the Bot
+                        for your Discord server. You may not reverse engineer, modify, or redistribute the Bot's source
+                        code without permission.</p>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: white; margin-bottom: 10px; font-size: 1.5rem;">3. User Conduct</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">You agree not to use the Bot for:</p>
+                    <ul style="color: var(--text-muted); padding-left: 20px;">
+                        <li>Spamming or harassment.</li>
+                        <li>Distributing illegal content.</li>
+                        <li>Exploiting bugs or glitches (please report them!).</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: white; margin-bottom: 10px; font-size: 1.5rem;">4. Availability</h3>
+                    <p style="color: var(--text-muted);">We strive for 99.9% uptime but do not guarantee uninterrupted
+                        service. The Bot is provided "as is".</p>
+                </div>
+
+                <div>
+                    <h3 style="color: white; margin-bottom: 10px; font-size: 1.5rem;">5. Termination</h3>
+                    <p style="color: var(--text-muted);">We reserve the right to ban any user or server from using the
+                        Bot for violating these terms.</p>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i class="fas fa-robot text-accent"></i>
+                        Bleed<span>X</span>
+                    </a>
+                    <p>The ultimate multi-purpose Discord bot for moderation, economy, and fun.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#premium">Premium</a></li>
+                        <li><a href="commands.html">Commands</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BleedX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

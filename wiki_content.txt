@@ -1,10 +1,10 @@
-# Discord Bot Universal - Official Wiki 📚
+# BleedX - Official Wiki 📚
 
 ## 🏠 Home
 
-**Welcome to Discord Bot Universal!** 🚀
+**Welcome to BleedX!** 🚀
 
-**Discord Bot Universal** is a powerful, multi-purpose Discord bot designed to manage your server with style and efficiency. It features a robust economy system, social profiles, advanced moderation, and much more.
+**BleedX** is a powerful, multi-purpose Discord bot designed to manage your server with style and efficiency. It features a robust economy system, social profiles, advanced moderation, and much more.
 
 ### 🌟 Key Features
 *   **💰 Global Economy:** Banking, work, robbery, and shop systems.
@@ -18,7 +18,7 @@
 
 ## 📥 Installation Guide 🛠️
 
-Follow these steps to self-host Discord Bot Universal on your own machine or VPS.
+Follow these steps to self-host BleedX on your own machine or VPS.
 
 ### Prerequisites
 *   [Node.js v16.9.0 or higher](https://nodejs.org/)
@@ -29,7 +29,7 @@ Follow these steps to self-host Discord Bot Universal on your own machine or VPS
 1.  **Clone the Repository:**
     ```bash
     git clone https://github.com/yourusername/discord-bot-universal.git
-    cd discord-bot-universal
+    cd bleedx
     ```
 
 2.  **Install Dependencies:**

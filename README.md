@@ -1,8 +1,8 @@
-# Discord Bot Universal
+# BleedX
 
 A complete, multi-purpose Discord bot built with **Discord.js v14**. This bot features a robust command handler, universal economy system, social features, moderation tools, leveling, tickets, and more.
 
-**🌐 Website:** [universalgg.netlify.app](https://universalgg.netlify.app/)
+**🌐 Website:** [bleedx.netlify.app](https://universalgg.netlify.app/)
 
 ## 🚀 Features
 
@@ -13,7 +13,7 @@ A complete, multi-purpose Discord bot built with **Discord.js v14**. This bot fe
 - **Leveling System**: XP tracking, rank cards, and level-up announcements.
 - **Ticket System**: Advanced support ticket management with transcripts and DM support (Modmail).
 - **Utility**: Image generation (quotes), polls, user/server info, and more.
-- **Dynamic Prefix**: Customizable prefix per server (default: `s?`).
+- **Dynamic Prefix**: Customizable prefix per server (default: `,`).
 - **Database**: SQLite-based persistence using `better-sqlite3`.
 
 ## 🛠️ Tech Stack
@@ -66,59 +66,59 @@ A complete, multi-purpose Discord bot built with **Discord.js v14**. This bot fe
 
 ## 🎮 Commands
 
-The default prefix is `s?`. You can change it using `s?setprefix`.
+The default prefix is `,`. You can change it using `,setprefix`.
 
 ### 💰 Economy (Universal)
-- `s?balance` - Check wallet and bank balance.
-- `s?deposit <amount|all>` - Deposit money into the bank.
-- `s?withdraw <amount|all>` - Withdraw money from the bank.
-- `s?pay <user> <amount>` - Transfer money to another user.
-- `s?work` - Work to earn money.
-- `s?daily` - Claim daily reward.
-- `s?rob <user>` - Attempt to rob a user.
-- `s?eco <add|remove|set> <user> <amount>` - Admin economy management.
+- `,balance` - Check wallet and bank balance.
+- `,deposit <amount|all>` - Deposit money into the bank.
+- `,withdraw <amount|all>` - Withdraw money from the bank.
+- `,pay <user> <amount>` - Transfer money to another user.
+- `,work` - Work to earn money.
+- `,daily` - Claim daily reward.
+- `,rob <user>` - Attempt to rob a user.
+- `,eco <add|remove|set> <user> <amount>` - Admin economy management.
 
 ### ❤️ Social & OwO
-- `s?profile` - View your profile (Bio, Partner, Family, Stats).
-- `s?setbio <text>` - Set your profile biography.
-- `s?marry <user>` - Propose to a user.
-- `s?divorce` - Divorce your partner.
-- `s?adopt <user>` - Adopt a child.
-- `s?disown <user>` - Disown a child.
-- `s?family` - View your family tree.
-- **Actions**: `s?hug`, `s?kiss`, `s?slap`, `s?pat`, `s?cuddle`, `s?poke`, `s?kill`.
-- **Emotes**: `s?dance`, `s?cry`.
-- **Gambling**: `s?slots`, `s?coinflip`.
-- **Animals**: `s?hunt`, `s?zoo`, `s?sell`.
+- `,profile` - View your profile (Bio, Partner, Family, Stats).
+- `,setbio <text>` - Set your profile biography.
+- `,marry <user>` - Propose to a user.
+- `,divorce` - Divorce your partner.
+- `,adopt <user>` - Adopt a child.
+- `,disown <user>` - Disown a child.
+- `,family` - View your family tree.
+- **Actions**: `,hug`, `,kiss`, `,slap`, `,pat`, `,cuddle`, `,poke`, `,kill`.
+- **Emotes**: `,dance`, `,cry`.
+- **Gambling**: `,slots`, `,coinflip`.
+- **Animals**: `,hunt`, `,zoo`, `,sell`.
 
 ### 🛡️ Moderation
-- `s?ban <user>` - Ban a member.
-- `s?kick <user>` - Kick a member.
-- `s?timeout <user> <duration>` - Timeout a member.
-- `s?unban <userID>` - Unban a user.
-- `s?warn <user> <reason>` - Warn a user.
-- `s?warnings <user>` - Check user warnings.
-- `s?clearwarns <user>` - Clear user warnings.
-- `s?nuke` - Delete and recreate the current channel.
-- `s?purge <amount>` - Delete messages.
-- `s?lock` / `s?unlock` - Lock/Unlock channel.
+- `,ban <user>` - Ban a member.
+- `,kick <user>` - Kick a member.
+- `,timeout <user> <duration>` - Timeout a member.
+- `,unban <userID>` - Unban a user.
+- `,warn <user> <reason>` - Warn a user.
+- `,warnings <user>` - Check user warnings.
+- `,clearwarns <user>` - Clear user warnings.
+- `,nuke` - Delete and recreate the current channel.
+- `,purge <amount>` - Delete messages.
+- `,lock` / `,unlock` - Lock/Unlock channel.
 
 ### 🎫 Tickets & Modmail
-- `s?tsetup` - Setup the ticket panel.
-- `s?tclose` - Close a ticket.
-- `s?tadd <user>` - Add a user to a ticket.
-- `s?tremove <user>` - Remove a user from a ticket.
+- `,tsetup` - Setup the ticket panel.
+- `,tclose` - Close a ticket.
+- `,tadd <user>` - Add a user to a ticket.
+- `,tremove <user>` - Remove a user from a ticket.
 - **Modmail**: DM the bot to open a support ticket.
 
 ### 🛠️ Utility & Config
-- `s?quote <text>` - Generate a quote image (or reply to a message).
-- `s?poll <question>` - Create a poll.
-- `s?say <message>` - Make the bot speak (supports embeds).
-- `s?avatar <user>` - View user avatar.
-- `s?banner <user>` - View user banner.
-- `s?serverinfo` / `s?userinfo` - View stats.
-- `s?config` - Configure server settings (Welcome, Logs, Leveling).
-- `s?setup` - Interactive server setup.
+- `,quote <text>` - Generate a quote image (or reply to a message).
+- `,poll <question>` - Create a poll.
+- `,say <message>` - Make the bot speak (supports embeds).
+- `,avatar <user>` - View user avatar.
+- `,banner <user>` - View user banner.
+- `,serverinfo` / `,userinfo` - View stats.
+- `,config` - Configure server settings (Welcome, Logs, Leveling).
+- `,setup` - Interactive server setup.
 
 ## ❓ Troubleshooting
 
@@ -127,7 +127,7 @@ The default prefix is `s?`. You can change it using `s?setprefix`.
 - Ensure **Message Content Intent** is enabled in the Developer Portal.
 - Check console for errors.
 
-### Database errors?
+### Database error,
 - Ensure the `data` folder exists.
 - If you see `SQLITE_ERROR`, try restarting the bot to apply migrations.
 - **Git Conflict?** If `git pull` fails on `data/bot.sqlite`, run:
