@@ -28,7 +28,7 @@ Follow these steps to self-host BleedX on your own machine or VPS.
 ### Setup
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/discord-bot-universal.git
+    git clone https://github.com/yourusername/bleedx.git
     cd bleedx
     ```
 

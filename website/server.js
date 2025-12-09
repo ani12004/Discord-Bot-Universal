@@ -18,6 +18,18 @@ app.get('/support', (req, res) => {
     res.sendFile(path.join(__dirname, 'support.html'));
 });
 
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'about.html'));
+});
+
+app.get('/terms', (req, res) => {
+    res.sendFile(path.join(__dirname, 'terms.html'));
+});
+
+app.get('/privacy', (req, res) => {
+    res.sendFile(path.join(__dirname, 'privacy.html'));
+});
+
 // Fallback to index.html for any other requests
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));

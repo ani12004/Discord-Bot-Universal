@@ -12,13 +12,9 @@ export default {
     name: "roleplay",
     description: "Roleplay actions.",
     permissions: [],
-    aliases: ["rp", "hug", "kiss", "slap", "pat", "kill"],
+    aliases: ["rp"],
     async execute(message, args) {
-        let action = message.content.split(" ")[0].slice(message.guild.prefix?.length || 2).toLowerCase(); // basic prefix handling
-        // If command is "roleplay" or "rp", action is first arg
-        if (action === "roleplay" || action === "rp") {
-            action = args[0];
-        }
+        let action = args[0]?.toLowerCase();
 
         if (!actions[action]) return message.reply("❌ Available actions: hug, kiss, slap, pat, kill.");
 

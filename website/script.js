@@ -17,7 +17,7 @@ cards.forEach(card => {
     });
 
     card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        card.style.transform = 'none'; // Clean reset
     });
 });
 
@@ -43,86 +43,97 @@ const animateCounters = () => {
     });
 };
 
-// Intersection Observer for Stats
-const statsSection = document.querySelector('.stats');
-let animated = false;
+// Intersection Observer for Stats & Section Animations
+const observerOptions = { threshold: 0.1 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-            animateCounters();
-            animated = true;
+        if (entry.isIntersecting) {
+            // Stats Trigger
+            if (entry.target.classList.contains('stats') && !entry.target.dataset.animated) {
+                animateCounters();
+                entry.target.dataset.animated = "true";
+            }
+            // Section Entry Animation
+            if (entry.target.classList.contains('section-enter')) {
+                entry.target.classList.add('visible');
+            }
         }
     });
-}, { threshold: 0.5 });
+}, observerOptions);
 
-observer.observe(statsSection);
+// Observe Stats if they exist
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+    observer.observe(statsSection);
+}
+
+// Observe All Sections for Entry Animation
+document.querySelectorAll('section').forEach(section => {
+    section.classList.add('section-enter');
+    observer.observe(section);
+});
 
 // Smooth Scroll for Anchor Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// Search and Filter Functionality
 const searchInput = document.getElementById('searchInput');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const commandCards = document.querySelectorAll('.command-card');
-const categories = document.querySelectorAll('.command-category');
+const filterBtns = document.querySelectorAll('.cmd-cat-pill');
+const commandCards = document.querySelectorAll('.cmd-card-ref');
+
+// Active filter state
+let currentFilter = 'all';
 
 // Filter by Category
 if (filterBtns.length > 0) {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all buttons
+            // Update UI
             filterBtns.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
             btn.classList.add('active');
 
-            const filter = btn.getAttribute('data-filter');
-
-            categories.forEach(category => {
-                if (filter === 'all' || category.id === filter) {
-                    category.classList.remove('hidden');
-                } else {
-                    category.classList.add('hidden');
-                }
-            });
+            // Update Filter State
+            currentFilter = btn.getAttribute('data-cat');
+            applyFilters();
         });
     });
 }
 
 // Search Commands
 if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
+    searchInput.addEventListener('input', () => {
+        applyFilters();
+    });
+}
 
-        categories.forEach(category => {
-            let hasVisibleCommands = false;
-            const cards = category.querySelectorAll('.command-card');
+function applyFilters() {
+    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
 
-            cards.forEach(card => {
-                const name = card.querySelector('.cmd-name').innerText.toLowerCase();
-                const desc = card.querySelector('.cmd-desc').innerText.toLowerCase();
+    commandCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const name = card.querySelector('.cmd-card-title') ? card.querySelector('.cmd-card-title').innerText.toLowerCase() : '';
+        const desc = card.querySelector('.cmd-card-desc') ? card.querySelector('.cmd-card-desc').innerText.toLowerCase() : '';
 
-                if (name.includes(searchTerm) || desc.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                    hasVisibleCommands = true;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
+        // Check Category Match
+        const categoryMatch = (currentFilter === 'all' || category === currentFilter);
 
-            // Hide category if no commands match
-            if (hasVisibleCommands) {
-                category.classList.remove('hidden');
-            } else {
-                category.classList.add('hidden');
-            }
-        });
+        // Check Search Match
+        const searchMatch = (name.includes(searchTerm) || desc.includes(searchTerm));
+
+        if (categoryMatch && searchMatch) {
+            card.style.display = 'flex'; // Or 'block', assuming flex from CSS
+        } else {
+            card.style.display = 'none';
+        }
     });
 }

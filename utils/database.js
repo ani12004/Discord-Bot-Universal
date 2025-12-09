@@ -167,16 +167,32 @@ try { db.prepare('ALTER TABLE guild_configs ADD COLUMN voicemaster_category TEXT
 export default db;
 
 // Helper functions
+const guildConfigCache = new Map();
+
 export const getGuildConfig = (guildId) => {
+  if (guildConfigCache.has(guildId)) {
+    return guildConfigCache.get(guildId);
+  }
   const stmt = db.prepare('SELECT * FROM guild_configs WHERE guild_id = ?');
-  return stmt.get(guildId) || { guild_id: guildId, prefix: ',' };
+  const config = stmt.get(guildId) || { guild_id: guildId, prefix: ',' };
+  guildConfigCache.set(guildId, config);
+  return config;
 };
 
 export const setGuildConfig = (guildId, key, value) => {
   // Ensure guild exists first
   db.prepare('INSERT OR IGNORE INTO guild_configs (guild_id) VALUES (?)').run(guildId);
   const stmt = db.prepare(`UPDATE guild_configs SET ${key} = ? WHERE guild_id = ?`);
-  return stmt.run(value, guildId);
+  const result = stmt.run(value, guildId);
+
+  // Invalidate or update cache
+  if (guildConfigCache.has(guildId)) {
+    const current = guildConfigCache.get(guildId);
+    current[key] = value;
+    guildConfigCache.set(guildId, current);
+  }
+
+  return result;
 };
 
 export const getUser = (userId, guildId) => {
@@ -242,6 +258,11 @@ export const removeItem = (userId, itemId, count = 1) => {
     return true;
   }
   return false;
+};
+
+export const getInventory = (userId) => {
+  const stmt = db.prepare('SELECT * FROM inventory WHERE user_id = ? AND count > 0');
+  return stmt.all(userId);
 };
 export const addWarning = (guildId, userId, reason) => {
   const stmt = db.prepare('INSERT INTO warns (guild_id, user_id, reason, timestamp) VALUES (?, ?, ?, ?)');

@@ -14,12 +14,19 @@ export default {
             // --- MODMAIL: DM Handling ---
             if (!message.guild) {
                 const userId = message.author.id;
-                const ticket = db.prepare('SELECT channel_id FROM tickets WHERE user_id = ? AND closed = 0').get(userId);
-                const existingChannelId = ticket ? ticket.channel_id : null;
+
+                // Check cache for existing ticket
+                let existingTicket = null;
+                for (const t of client.activeTickets.values()) {
+                    if (t.user_id === userId) {
+                        existingTicket = t;
+                        break;
+                    }
+                }
 
                 // 1. Existing Ticket
-                if (existingChannelId) {
-                    const channel = client.channels.cache.get(existingChannelId);
+                if (existingTicket) {
+                    const channel = client.channels.cache.get(existingTicket.channel_id);
                     if (channel) {
                         const embed = new EmbedBuilder()
                             .setColor("Blue")
@@ -54,7 +61,13 @@ export default {
                 });
 
                 const ticketId = `${guild.id}-${userId}-${Date.now()}`;
+
+                // Insert into DB
                 db.prepare('INSERT INTO tickets (ticket_id, guild_id, user_id, channel_id) VALUES (?, ?, ?, ?)').run(ticketId, guild.id, userId, channel.id);
+
+                // Update Cache
+                const newTicket = { ticket_id: ticketId, guild_id: guild.id, user_id: userId, channel_id: channel.id, closed: 0, anonymous: 0 };
+                client.activeTickets.set(channel.id, newTicket);
 
                 const embed = new EmbedBuilder()
                     .setColor("Green")
@@ -68,9 +81,10 @@ export default {
             }
 
             // --- MODMAIL: Reply to User ---
-            const ticket = db.prepare('SELECT * FROM tickets WHERE channel_id = ? AND closed = 0').get(message.channel.id);
-            if (ticket) {
-                const config = getGuildConfig(message.guild.id);
+            // Check cache first
+            if (client.activeTickets && client.activeTickets.has(message.channel.id)) {
+                const ticket = client.activeTickets.get(message.channel.id);
+                const config = getGuildConfig(message.guild.id); // This is now cached too
                 const prefix = config.prefix || 's?';
 
                 // If it's NOT a command, relay to user

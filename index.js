@@ -43,6 +43,14 @@ async function startBot() {
     // Load slash commands
     await loadSlashCommands(client);
 
+    // Load active tickets into memory
+    client.activeTickets = new Map();
+    const tickets = db.prepare('SELECT * FROM tickets WHERE closed = 0').all();
+    for (const ticket of tickets) {
+      client.activeTickets.set(ticket.channel_id, ticket);
+    }
+    logger.info(`Loaded ${tickets.length} active tickets.`);
+
     // Login bot
     await client.login(process.env.DISCORD_TOKEN);
 

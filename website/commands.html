@@ -13,22 +13,26 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <i class="fas fa-robot text-accent"></i>
                 Bleed<span>X</span>
             </a>
             <div class="nav-links">
-                <a href="index.html#features" class="nav-link">Features</a>
-                <a href="commands.html" class="nav-link" style="color: white;">Commands</a>
-                <a href="index.html#premium" class="nav-link">Premium</a>
-                <a href="index.html#support" class="nav-link">Support</a>
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/commands" class="nav-link active">Commands</a>
+                <a href="/premium" class="nav-link">Premium</a>
+                <a href="/support" class="nav-link">Support</a>
+                <a href="/about" class="nav-link">About</a>
             </div>
-            <a href="#" class="btn btn-primary">Add to Discord</a>
+            <a href="https://discord.com/oauth2/authorize?client_id=1447868811045900299&permissions=8&integration_type=0&scope=bot"
+                class="btn btn-primary" target="_blank">
+                Add to Discord
+            </a>
         </div>
     </nav>
 
     <!-- Content -->
-    <section class="section" style="padding-top: 120px;">
+    <section class="section">
         <div class="container">
 
             <!-- Header -->
@@ -39,7 +43,8 @@
                 <div class="cmd-search-wrapper">
                     <div class="cmd-search-label">search</div>
                     <div class="cmd-search-container-ref">
-                        <input type="text" class="cmd-search-input-ref" placeholder="Search commands...">
+                        <input type="text" id="searchInput" class="cmd-search-input-ref"
+                            placeholder="Search commands...">
                         <i class="fas fa-search cmd-search-icon-ref"></i>
                     </div>
                 </div>
@@ -1963,6 +1968,39 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <i class="fas fa-robot text-accent"></i>
+                        Bleed<span>X</span>
+                    </a>
+                    <p>The ultimate multi-purpose Discord bot for moderation, economy, and fun.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/premium">Premium</a></li>
+                        <li><a href="/commands">Commands</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 BleedX. All rights reserved.</p>
             </div>
